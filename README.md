@@ -35,6 +35,50 @@ Table of Contents
 
 ## Memory Management
 
+A memory leak must not be created in the source code. Retain cycles should be prevented by using either `weak` and `unowned` references. In addition, value types (e.g., `struct`, `enum`) can be used instead of reference types (e.g., `class`).
+
+* <a id='optional-binding-over-memory-management'></a>(<a href='#optional-binding-over-memory-management'>link</a>)
+Always use `[weak self]` or `[unowned self]` with `guard let self = self else { return }`.
+
+**Preferred**
+```swift
+someMethod { [weak self] someResult in
+  guard let self = self else { return }
+  let result = self.updateResult(someResult)
+  self.updateUI(with: result)
+}
+```
+
+**Not Preferred**
+```swift
+/// Deallocation of self might occur between `let result = self?.updateResult(someResult)` and `self?.updateUI(with: result)`
+someMethod { [weak self] someResult in
+  let result = self?.updateResult(someResult)
+  self?.updateUI(with: result)
+}
+```
+* <a id='weak-over-unowned'></a>(<a href='#weak-over-unowned'>link</a>)
+Use `[unowned self]` where the object can not be nil and 100% sure that object's lifetime is less than or equal to self. However, `[weak self]` should be preferred to `[unowned self]`.
+
+
+**Preferred**
+```swift
+someMethod { [weak self] someResult in
+  guard let self = self else { return }
+  let result = self.updateResult(someResult)
+  self.updateUI(with: result)
+}
+```
+
+**Not Preferred**
+```swift
+/// self may be deallocated inside closure
+someMethod { [unowned self] someResult in
+  guard let self = self else { return }
+  let result = self.updateResult(someResult)
+  self.updateUI(with: result)
+}
+```
 
 ## License
 
