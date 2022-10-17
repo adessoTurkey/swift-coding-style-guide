@@ -29,7 +29,7 @@ updateUI(message, isPositionCorrect)
 ```
 
 **Not Preffered**
-```
+```swift
 let isPositionCorrect = false
 if isPositionCorrect {
     updateUI("Position Correct", isPositionCorrect)
@@ -41,7 +41,7 @@ if isPositionCorrect {
 By creating an extension on ShowAlert protocol, all conforming types automatically gain showAlert() method implementation without any additional modification. 
 
 **Preferred**
-```
+```swift
 protocol ShowingAlert {
     func showAlert()
 }
@@ -57,7 +57,7 @@ class HomeViewController: ShowingAlert { }
 ```
 
 **Not Preffered**
-```
+```swift
 class LoginViewController {
     func showAlert() {
         // ...
@@ -74,7 +74,7 @@ class HomeViewController: ShowingAlert {
 We can extract code snippets that do the same job into a single function.
 
 **Preferred**
-```
+```swift
 func sum(a: Int, b: Int) -> Int { return a + b }
 
 func calculateTwoProperties() {
@@ -83,7 +83,7 @@ func calculateTwoProperties() {
 ```
 
 **Not Preffered**
-```
+```swift
 func calculateTwoProperties() {
     let result = firstValue + secondValue
 }
