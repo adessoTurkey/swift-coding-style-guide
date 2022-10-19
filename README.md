@@ -70,7 +70,7 @@ class HomeViewController: ShowingAlert {
     }
 }
 ```
-* <a id='protocol-extension-dry'></a>(<a href='#protocol-extension-dry'>link</a>)
+* <a id='same-job-single-func-dry'></a>(<a href='#same-job-single-func-dry'>link</a>)
 We can extract code snippets that do the same job into a single function.
 
 **Preferred**
