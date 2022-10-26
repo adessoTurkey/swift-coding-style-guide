@@ -71,7 +71,7 @@ class HomeViewController: ShowingAlert {
 }
 ```
 * <a id='same-job-single-func-dry'></a>(<a href='#same-job-single-func-dry'>link</a>)
-We can extract code snippets that do the same job into a single function.
+Extract code snippets with the same job into a single function.
 
 **Preferred**
 ```swift
@@ -84,6 +84,10 @@ func calculateTwoProperties() {
 
 **Not Preffered**
 ```swift
+
+let firstValue: Int = 5
+let secondValue: Int = 12
+
 func calculateTwoProperties() {
     let result = firstValue + secondValue
 }
