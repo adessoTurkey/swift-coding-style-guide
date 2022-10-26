@@ -32,6 +32,87 @@ Table of Contents
 
 ## Function Declarations
 
+* <a id='function-naming-long-declaration'></a>(<a href='#function-naming-long-declaration'>link</a>)
+Keep function declarations short, if long, then use a line break after each parameter.
+
+**Preferred**
+```swift
+func calculateCost(quantity: Int,
+                   realPrice: Double,
+                   discountRate: Double,
+                   taxRate: Double,
+                   serviceCharge: Double) -> Double {
+    ...
+}
+```
+
+**Not Preferred**
+```swift
+func calculateCost(quantity: Int, realPrice: Double, discountRate: Double, taxRate: Double, serviceCharge: Double) -> Double {
+    ...
+}
+```
+
+* <a id='function-with-long-declaration-invocation'></a>(<a href='#function-with-long-declaration-invocation'>link</a>)
+Invoke functions with a long declaration by using a line break for each parameter.
+
+**Preferred**
+```swift
+let result = calculateCost(quantity: 5,
+                           realPrice: 100,
+                           discountRate: 25,
+                           taxRate: 10,
+                           serviceCharge: 5)
+```
+
+**Not Preferred**
+```swift
+let result = calculateCost(quantity: 5, realPrice: 100, discountRate: 25, taxRate: 10, serviceCharge: 5)
+```
+
+**Not Preferred**
+```swift
+let result = calculateCost(
+    quantity: 5,
+    realPrice: 100,
+    discountRate: 25,
+    taxRate: 10,
+    serviceCharge: 5)
+```
+
+* <a id='function-naming-assistive-words'></a>(<a href='#function-naming-assistive-words'>link</a>)
+Use prepositions or assistive words in the parameter naming instead of function naming.
+
+**Preferred**
+```swift
+func displayPopup(with message: String) {
+    ...
+}
+```
+
+**Not Preferred**
+```swift
+func displayPopupWith(message: String) {
+    ...
+}
+```
+
+* <a id='function-avoid-void-return'></a>(<a href='#function-avoid-void-return'>link</a>)
+Avoid from `Void` return type.
+
+**Preferred**
+```swift
+func someMethod() {
+    ...
+}
+```
+
+**Not Preferred**
+```swift
+func someMethod() -> Void {
+    ...
+}
+```
 
 ## Memory Management
 
@@ -51,7 +132,7 @@ someMethod { [weak self] someResult in
 
 **Not Preferred**
 ```swift
-/// Deallocation of self might occur between `let result = self?.updateResult(someResult)` and `self?.updateUI(with: result)`
+// Deallocation of self might occur between `let result = self?.updateResult(someResult)` and `self?.updateUI(with: result)`
 someMethod { [weak self] someResult in
   let result = self?.updateResult(someResult)
   self?.updateUI(with: result)
@@ -72,7 +153,7 @@ someMethod { [weak self] someResult in
 
 **Not Preferred**
 ```swift
-/// self may be deallocated inside closure
+// self may be deallocated inside closure
 someMethod { [unowned self] someResult in
   guard let self = self else { return }
   let result = self.updateResult(someResult)
