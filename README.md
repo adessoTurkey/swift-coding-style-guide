@@ -53,11 +53,6 @@ extension MyViewController: UITableViewDataSource {
 extension MyViewController: UIScrollViewDelegate {
   // scroll view delegate
 }
-
-// MARK: - MyViewDelegate
-extension MyViewController: MyViewDelegate {
-  // view delegate
-}
 ```
 
 **Not Preferred**
