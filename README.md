@@ -10,6 +10,7 @@ Table of Contents
 - [Use Early Exit](#use-early-exit)
 - [Write Shy Code](#write-shy-code)
 - [Minimal Imports](#minimal-imports)
+- [Protocol Declarations](#protocol-declarations)
 - [Protocol Conformance](#protocol-conformance)
 - [Function Declarations](#function-declarations)
 - [Memory Management](#memory-management)
@@ -27,8 +28,44 @@ Table of Contents
 ## Minimal Imports
 
 
+## Protocol Declarations
+
+
 ## Protocol Conformance
 
+When adding protocol conformance to a model, prefer adding a separate extension for the protocol methods.
+
+* <a id='optional-binding-over-protocol-conformance'></a>(<a href='#optional-binding-over-protocol-conformance'>link</a>)
+Always use // MARK: - comment to keep things well-organized.
+
+**Preferred**
+```swift
+class MyViewController: UIViewController {
+  // class stuff
+}
+
+// MARK: - UITableViewDataSource
+extension MyViewController: UITableViewDataSource {
+  // table view data source
+}
+
+// MARK: - UIScrollViewDelegate
+extension MyViewController: UIScrollViewDelegate {
+  // scroll view delegate
+}
+
+// MARK: - MyViewDelegate
+extension MyViewController: MyViewDelegate {
+  // view delegate
+}
+```
+
+**Not Preferred**
+```swift
+class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
+  // all
+}
+```
 
 ## Function Declarations
 
