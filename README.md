@@ -17,6 +17,81 @@ Table of Contents
 
 ## DRY (Don't Repeat Yourself)
 
+The simple meaning of DRY is don’t write the same code repeatedly.
+
+* <a id='duplicate-call-function-dry'></a>(<a href='#duplicate-call-function-dry'>link</a>)
+Instead of preventing code repetition and calling the same function more than once, we should prefer the following method.
+
+**Preferred**
+```swift
+let message = isPositionCorrect ? "Position Correct" : "Position InCorrect"
+updateUI(message, isPositionCorrect)
+```
+
+**Not Preffered**
+```swift
+let isPositionCorrect = false
+if isPositionCorrect {
+    updateUI("Position Correct", isPositionCorrect)
+} else {
+    updateUI("Position InCorrect", isPositionCorrect)
+}
+```
+* <a id='protocol-extension-dry'></a>(<a href='#protocol-extension-dry'>link</a>)
+By creating an extension on ShowAlert protocol, all conforming types automatically gain showAlert() method implementation without any additional modification. 
+
+**Preferred**
+```swift
+protocol ShowingAlert {
+    func showAlert()
+}
+
+extension ShowingAlert where Self: UIViewController {
+    func showAlert() {
+        // ...
+    }
+}
+
+class LoginViewController: ShowingAlert { }
+class HomeViewController: ShowingAlert { }
+```
+
+**Not Preffered**
+```swift
+class LoginViewController {
+    func showAlert() {
+        // ...
+    }
+}
+
+class HomeViewController: ShowingAlert { 
+    func showAlert() {
+        // ...
+    }
+}
+```
+* <a id='same-job-single-func-dry'></a>(<a href='#same-job-single-func-dry'>link</a>)
+Extract code snippets with the same job into a single function.
+
+**Preferred**
+```swift
+func sum(a: Int, b: Int) -> Int { return a + b }
+
+func calculateTwoProperties() {
+    let result = sum(a: firstValue, b: secondValue)
+}
+```
+
+**Not Preffered**
+```swift
+
+let firstValue: Int = 5
+let secondValue: Int = 12
+
+func calculateTwoProperties() {
+    let result = firstValue + secondValue
+}
+```
 
 ## Use Early Exit
 
