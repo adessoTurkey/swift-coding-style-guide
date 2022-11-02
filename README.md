@@ -96,6 +96,30 @@ func calculateTwoProperties() {
 
 ## Use Early Exit
 
+Too many loops in the source code can cause complexity. Therefore, with early exit instead of wrapping the source code in an if loop statement, the condition that the loop is not executed should be added first, and if this is the case, it should return.
+
+* <a id='use-early-exit-with-guard'></a>(<a href='#use-early-exit-with-guard'>link</a>)
+
+**Preferred**
+```swift
+func function(items: [Int]) {
+    guard !items.isEmpty else { return }
+    for item in items {
+        // do something
+    }
+}
+```
+
+**Not Preffered**
+```swift
+func function(items: [Int]) {
+    if items.count > 0 {
+        for item in items {
+            // do something
+        }
+    }
+}
+```
 
 ## Write Shy Code
 
