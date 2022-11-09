@@ -13,6 +13,7 @@ Table of Contents
 - [Protocol Declarations](#protocol-declarations)
 - [Protocol Conformance](#protocol-conformance)
 - [Function Declarations](#function-declarations)
+- [Closure Expressions](#closure-expressions)
 - [Memory Management](#memory-management)
 - [License](#license)
 
@@ -239,6 +240,133 @@ func someMethod() {
 **Not Preferred**
 ```swift
 func someMethod() -> Void {
+    ...
+}
+```
+
+## Closure Expressions
+
+* <a id='closure-unused-parameter'></a>(<a href='#closure-unused-parameter'>link</a>)
+Use an underscore (`_`) for the name of the unused closure parameter.
+
+**Preferred**
+```swift
+// Only `data` parameter is used
+someCompletion { data, _, _ in
+    handle(data)
+}
+```
+
+**Not Preferred**
+```swift
+// `error` and `succeeded` parameters are unused
+someCompletion { data, error, succeeded in
+    handle(data)
+}
+```
+
+* <a id='trailing-closure-syntax'></a>(<a href='#trailing-closure-syntax'>link</a>)
+Use trailing closure syntax when a function has only one closure parameter that is at the end of the argument list.
+
+**Preferred**
+```swift
+someMethod(options: [.option1]) { result in
+    print(result)
+}
+        
+otherMethod(options: [.option1],
+            action: { index in
+            print(index)
+},
+            completion: { result in
+    print(result)
+})
+```
+
+**Not Preferred**
+```swift
+someMethod(options: [.option1], completion: { result in
+    print(result)
+})
+        
+otherMethod(options: [.option1], action: { index in
+    print(index)
+}) { result in
+    print(result)
+}
+```
+
+* <a id='closure-space-and-line-break-syntax'></a>(<a href='#closure-space-and-line-break-syntax'>link</a>)
+Use space or line break inside and outside of the closure (if necessary) to increase readability.
+
+**Preferred**
+```swift
+let activeIndices = items.filter { $0.isActive }.map { $0.index }
+
+let activeIndices = items.filter({ $0.isActive }).map({ $0.index })
+
+let activeIndices = items
+    .filter { $0.isActive }
+    .map { $0.index }
+
+let activeIndices = items
+    .filter {
+        $0.isActive
+    }
+    .map {
+        $0.index
+    }
+```
+
+**Not Preferred**
+```swift
+let activeIndices = items.filter{$0.isActive}.map{$0.index}
+
+let activeIndices = items.filter( { $0.isActive } ).map( { $0.index } )
+
+let activeIndices = items
+    .filter{$0.isActive}
+    .map{$0.index}
+
+let activeIndices = items
+    .filter{
+        $0.isActive
+    }
+    .map{
+        $0.index
+    }
+```
+
+* <a id='empty-parentheses-with-trailing-closure'></a>(<a href='#empty-parentheses-with-trailing-closure'>link</a>)
+Don't use empty parentheses `()` when single parameter of a function is closure.
+
+**Preferred**
+```swift
+func someClosure { result in
+    ...
+}
+```
+
+**Not Preferred**
+```swift
+func someClosure() { result in
+    ...
+}
+```
+
+* <a id='closure-avoid-void-return'></a>(<a href='#closure-avoid-void-return'>link</a>)
+Avoid from `Void` return type.
+
+**Preferred**
+```swift
+func someClosure { result in
+    ...
+}
+```
+
+**Not Preferred**
+```swift
+func someClosure { result -> Void in
     ...
 }
 ```
