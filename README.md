@@ -33,10 +33,9 @@ Table of Contents
 
 ## Protocol Conformance
 
-When adding protocol conformance to a model, prefer adding a separate extension for the protocol methods.
+When adding protocol conformance to a model, separate each into an extension and use // MARK: - comment.
 
 * <a id='optional-binding-over-protocol-conformance'></a>(<a href='#optional-binding-over-protocol-conformance'>link</a>)
-Always use // MARK: - comment to keep things well-organized.
 
 **Preferred**
 ```swift
