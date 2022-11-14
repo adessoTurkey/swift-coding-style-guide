@@ -132,7 +132,6 @@ Import only the modules a source file requires.
 **Preferred**
 ```swift
 import UIKit
-
 var textField: UITextField
 var numbers: [Int]
 ```
@@ -141,7 +140,6 @@ var numbers: [Int]
 ```swift
 import UIKit
 import Foundation
-
 var textField: UITextField
 var numbers: [Int]
 ```
@@ -149,14 +147,12 @@ var numbers: [Int]
 **Preffered**
 ```swift
 import Foundation
-
 var numbers: [Int]
 ```
 
 **Not Preffered**
 ```swift
 import UIKit
-
 var numbers: [Int]
 ```
 
