@@ -126,6 +126,39 @@ func function(items: [Int]) {
 
 ## Minimal Imports
 
+* <a id='minimal-imports'></a>(<a href='#minimal-imports'>link</a>)
+Import only the modules a source file requires. 
+
+**Preferred**
+```swift
+import UIKit
+
+var textField: UITextField
+var numbers: [Int]
+```
+
+**Not Preffered**
+```swift
+import UIKit
+import Foundation
+
+var textField: UITextField
+var numbers: [Int]
+```
+
+**Preffered**
+```swift
+import Foundation
+
+var numbers: [Int]
+```
+
+**Not Preffered**
+```swift
+import UIKit
+
+var numbers: [Int]
+```
 
 ## Protocol Declarations
 
