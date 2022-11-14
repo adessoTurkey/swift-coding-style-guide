@@ -123,6 +123,40 @@ func function(items: [Int]) {
 
 ## Write Shy Code
 
+* <a id='write-shy-code'></a>(<a href='#write-shy-code'>link</a>)
+Write shy code that makes objects loosely coupled. Write everything with the smallest scope possible and only increase the scope if it really needs to.
+
+**Preferred**
+```swift
+class ReusableUIComponent {
+    private var image: UIImage
+    
+    init(image: UIImage) {
+        self.image = image
+    }
+    
+    var componentImage: UIImage {        
+        get {
+            return image
+        }
+        set {
+            image = newValue
+        }
+    }
+}
+```
+
+**Not Preffered**
+```swift
+class ShowImage {
+    var image: UIImage
+    
+    func setImage() {
+        image = UIImage(named: "picture")
+    }
+}
+```
+
 
 ## Minimal Imports
 
