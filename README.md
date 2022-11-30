@@ -121,7 +121,7 @@ func function(items: [Int]) {
 }
 ```
 
-## Write Shy Code
+## Write Shy(Law Of Demeter) Code
 
 * <a id='write-shy-code'></a>(<a href='#write-shy-code'>link</a>)
 Write shy code that makes objects loosely coupled. Write everything with the smallest scope possible and only increase the scope if it really needs to.
