@@ -128,31 +128,37 @@ Write shy code that makes objects loosely coupled. Write everything with the sma
 
 **Preferred**
 ```swift
-class ReusableUIComponent {
-    private var image: UIImage
-    
-    init(image: UIImage) {
-        self.image = image
-    }
-    
-    var componentImage: UIImage {        
+protocol PrefferedVMProtocol {
+    var title: String { get set }
+}
+
+class PrefferedVM: PrefferedVMProtocol {
+    var title: String {
         get {
-            return image
+            return self.title
         }
         set {
-            image = newValue
+            self.title = newValue
         }
+    }
+}
+
+class PrefferedVC {
+    var viewModel: PrefferedVMProtocol = PrefferedVM()
+    
+    func changeText() {
+        viewModel.title = "Test String"
     }
 }
 ```
 
 **Not Preffered**
 ```swift
-class ShowImage {
-    var image: UIImage
-    
-    func setImage() {
-        image = UIImage(named: "picture")
+class SampleVC {
+    var title: String?
+  
+    func changeText() {
+        title = "Test String"
     }
 }
 ```
