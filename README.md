@@ -121,7 +121,50 @@ func function(items: [Int]) {
 }
 ```
 
-## Write Shy Code
+## Write Shy(Law Of Demeter) Code
+
+* <a id='write-shy-code'></a>(<a href='#write-shy-code'>link</a>)
+Write shy code that makes objects loosely coupled. Write everything with the smallest scope possible and only increase the scope if it really needs to.
+
+**Preferred**
+```swift
+protocol PrefferedVMProtocol {
+    func changeUserName(name: String)
+}
+
+struct User {
+    var name: String?
+}
+
+class PrefferedVM: PrefferedVMProtocol {
+    private var user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+    
+    func changeUserName(name: String) {
+        user.name = name
+    }
+}
+
+let viewModel: PrefferedVMProtocol = PrefferedVM(user: User(name: "Test"))
+viewModel.changeUserName(name: "Preffered")
+```
+
+**Not Preffered**
+```swift
+class NotPrefferedVM {
+    var user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+}
+
+let viewModel = NotPrefferedVM(user: User(name: "Test"))
+viewModel.user.name = "Not Preffered"
+```
 
 
 ## Minimal Imports
