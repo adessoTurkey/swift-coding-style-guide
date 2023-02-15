@@ -475,7 +475,7 @@ Use `[unowned self]` where the object can not be nil and 100% sure that object's
 **Preferred**
 ```swift
 someMethod { [weak self] someResult in
-  guard let self else { return } // <a href='#if-let-shorthand'>If Let Shorthand</a>
+  guard let self else { return } // <pre><a href="#if-let-shorthand">If Let Shorthand</a></pre>
   let result = self.updateResult(someResult)
   self.updateUI(with: result)
 }
