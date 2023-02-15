@@ -454,7 +454,7 @@ Always use `[weak self]` or `[unowned self]` with `guard let self = self else { 
 **Preferred**
 ```swift
 someMethod { [weak self] someResult in
-  guard let self else { return } // <a href='#if-let-shorthand'>If Let Shorthand</a>
+  guard let self else { return } // Check out 'If Let Shorthand'
   let result = self.updateResult(someResult)
   self.updateUI(with: result)
 }
@@ -475,7 +475,7 @@ Use `[unowned self]` where the object can not be nil and 100% sure that object's
 **Preferred**
 ```swift
 someMethod { [weak self] someResult in
-  guard let self else { return } // <pre><a href="#if-let-shorthand">If Let Shorthand</a></pre>
+  guard let self else { return } // Check out 'If Let Shorthand'
   let result = self.updateResult(someResult)
   self.updateUI(with: result)
 }
@@ -485,7 +485,7 @@ someMethod { [weak self] someResult in
 ```swift
 // self may be deallocated inside closure
 someMethod { [unowned self] someResult in
-  guard let self else { return } // <a href='#if-let-shorthand'>If Let Shorthand</a>
+  guard let self else { return } // Check out 'If Let Shorthand'
   let result = self.updateResult(someResult)
   self.updateUI(with: result)
 }
