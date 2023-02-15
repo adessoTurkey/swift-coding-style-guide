@@ -491,7 +491,7 @@ someMethod { [unowned self] someResult in
 ```
 
 ## If-Let Shortend
-Since *(<a href='https://github.com/apple/swift-evolution/blob/main/proposals/0345-if-let-shorthand.md'>Swift 5.7</a>), we can simplfy the if-let & guard let blocks.
+Since (<a href='https://github.com/apple/swift-evolution/blob/main/proposals/0345-if-let-shorthand.md'>Swift 5.7</a>), we can simplfy the if-let & guard let blocks.
 
 **Preferred**
 ```swift
@@ -518,8 +518,7 @@ someMethod { [weak self] someResult in
 
 **Not Preferred**
 ```swift
-// self may be deallocated inside closure
-someMethod { [unowned self] someResult in
+someMethod { [weak self] someResult in
   guard let self = self else { return }
   let result = self.updateResult(someResult)
   self.updateUI(with: result)
